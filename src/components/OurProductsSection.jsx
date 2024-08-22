@@ -10,29 +10,29 @@ export default function OurProductsSection() {
 }
 
 function AllProducts() {
+    const products = [
+        { 'title': 'Synthetic', 'subtitle': 'Night lamp', 'price': '99', 'discount': '199', 'image': product1 },
+        { 'title': 'Synthetic', 'subtitle': 'Night lamp', 'price': '99', 'discount': null, 'image': product1 },
+    ]
     return (
         <div className="flex flex-wrap mt-5">
-            <Product />
-            <Product />
-            <Product />
-            <Product />
-            <Product />
-            <Product />
-            <Product />
+            {products.map((product, index) => (
+                <Product key={index} {...product} />
+            ))}
         </div>
     )
 }
 
-function Product() {
+function Product({ title, subtitle, price, discount, image }) {
     return (
         <div className="w-full md:w-1/4 p-3">
-            <img className="w-full aspect-square object-cover object-center" src={product1} alt="Product 1" />
+            <img className="w-full aspect-square object-cover object-center" src={image} alt={title} />
             <div className="bg-gray-100 p-3 space-y-1">
-                <h4 className="font-semibold text-lg">Product 1</h4>
-                <p className="text-gray-500 text-sm">Night lamp</p>
-                <h4 className="font-semibold">$99 <span className="font-normal text-gray-500 text-sm">
-                        <del>$199</del>
-                    </span></h4>
+                <h4 className="font-semibold text-lg">{title}</h4>
+                <p className="text-gray-500 text-sm">{subtitle}</p>
+                <h4 className="font-semibold">${price} {discount && <span className="font-normal text-gray-500 text-sm">
+                    <del>${discount}</del>
+                </span>}</h4>
             </div>
         </div>
     )
